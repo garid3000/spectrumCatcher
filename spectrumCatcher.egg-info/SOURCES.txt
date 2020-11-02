@@ -1,0 +1,10 @@
+README.md
+setup.py
+spectrumCatcher/__init__.py
+spectrumCatcher/downloader.py
+spectrumCatcher/processor.py
+spectrumCatcher/some_function.py
+spectrumCatcher.egg-info/PKG-INFO
+spectrumCatcher.egg-info/SOURCES.txt
+spectrumCatcher.egg-info/dependency_links.txt
+spectrumCatcher.egg-info/top_level.txt
