@@ -22,3 +22,9 @@ This is a Python library for downloading &amp; analyzing Spectrum Catcher Data w
 >>> d.processHTML()
 >>> d.download_all()
 ```
+
+
+## Copying Data Directly from Phone
+```
+>>>
+```
