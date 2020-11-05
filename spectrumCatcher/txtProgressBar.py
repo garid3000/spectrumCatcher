@@ -40,7 +40,7 @@ def printProgressBar2 (iteration, total, iteration1, total1, prefix = '', suffix
     filledLength1 = int(length1 * iteration1 // total1)
     bar1 = fill * filledLength1 + '-' * (length1 - filledLength1)
 
-    print(f'\r{prefix} |{bar}| {percent}% {suffix} {prefix1} |{bar1}| {percent1}% {suffix1}', end = printEnd)
+    print(f'\r{prefix} |{bar}| {percent}% {suffix} {prefix1} |{bar1}| {percent1}% {suffix1} ', end = printEnd)
     # Print New Line on Complete
     if iteration1 == total1 and iteration == total: 
         print()
