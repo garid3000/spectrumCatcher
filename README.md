@@ -9,8 +9,8 @@ This is a Python library for downloading & analyzing Spectrum Catcher Data with 
 ## 1. Installation
 
 * option 1: `pip install spectrumCatcher`
-* option 1: \(after downloading this repo and extract\) `python setup.py install`
-* option 2: \(after downloading this repo and extract\)
+* option 2: \(after downloading this repo and extract\) `python setup.py install`
+* option 3: \(after downloading this repo and extract\)
 
   `pip install dist/spectrumCathcer-0.1.0-py3-none-any.whl`
 
