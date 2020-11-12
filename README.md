@@ -16,6 +16,8 @@ This is a Python library for downloading & analyzing Spectrum Catcher Data with 
 
 ## 2. Usage
 
+![](.gitbook/assets/gimbalsoft.svg)
+
 ### 2.1. Downloading from the Web-server:
 
 ```python
@@ -43,8 +45,6 @@ This is a Python library for downloading & analyzing Spectrum Catcher Data with 
 >>> c.processHTML(display = True)
 >>> c.download1day('20201111')
 ```
-
-![](.gitbook/assets/gimbalsoft.svg)
 
 
 
