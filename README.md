@@ -18,7 +18,7 @@ This is a Python library for downloading & analyzing Spectrum Catcher Data with 
 
 ### 2.1. Downloading from the Web-server:
 
-```text
+```python
 >>> from spectrumCatcher import downloader
 >>> d = downloader.Downloader("username", "password", "2020-03-26","path/for/downloaded/data")
 >>> Types = {
@@ -37,7 +37,7 @@ This is a Python library for downloading & analyzing Spectrum Catcher Data with 
 
 ### 2.2. Copying from the Phone
 
-```text
+```python
 >>> c = Copier('192.168.11.4')
 >>> c.downloadHTML()
 >>> c.processHTML(display = True)
