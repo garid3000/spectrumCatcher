@@ -44,5 +44,7 @@ This is a Python library for downloading & analyzing Spectrum Catcher Data with 
 >>> c.download1day('20201111')
 ```
 
+![](.gitbook/assets/gimbalsoft.svg)
+
 
 
