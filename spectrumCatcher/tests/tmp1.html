@@ -1,8 +1,208 @@
-<html>
-  <head>
-	<meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="refresh" content="0;url=https://www.fgbb.jp/mac/?UnitName=195255_001&mac=98-fa-9b-92-b8-f3&inf=eth0&url=http://spectrumcatcher.polarstarspace.com/veggie/report/report.php">
-  </head>
-  <body>
-  </body>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>calendar</title>
+
+    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap-honoka/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+    <style>
+      .material-icons {
+        vertical-align: middle;
+        font-size: 52px;
+      }
+      .list-title {
+        color: #f0f0f0;
+        margin-top: 10px;
+      }
+      td a {
+        color: #f0f0f0;
+        white-space: nowrap;
+      }
+      td a:hover {
+        color: #ffffff;
+      }
+      #report-list {
+        padding-right: 5px;
+        padding-left: 5px;
+        margin: 0;
+        width: 100%;
+        justify-content: center;
+      }
+      #data-list {
+        padding-right: 5px;
+        padding-left: 5px;
+        margin: 0;
+        width: 85%;
+      }
+      #col-data-list {
+        padding-right: 0;
+        padding-left: 0;
+        max-width: 100%;
+      }
+      #detailed-search {
+        padding-right: 0;
+        padding-left: 0;
+        margin: 0;
+        width: 15%;
+        background-color: DARKGREY;    
+        overflow-y: hidden;      
+        overflow-x: auto;
+        display: grid;
+        flex-direction: column;
+        min-height: -webkit-fill-available;
+      }
+      #col-detailed-search {
+        padding-right: 0;
+        padding-left: 0;
+        max-width: 100%;
+      }
+      #col-mb-searchArea {
+        padding-right: 0;
+        padding-left: 0;
+        max-width: 100%;
+        background-color: DARKGREY;
+      }
+      #title {
+        color: black;
+      }
+      .btn-link {
+        color: black;
+      } 
+      ul li {
+        color: white;
+        margin-bottom: 4px;
+      }
+      #category {
+        display:flex;
+        background-color: GRAY;
+        white-space: nowrap;
+        height: 40px;
+      }
+      input[type=checkbox] {
+        margin-right: 10px;
+      }
+      .category-itemName {
+        white-space: nowrap;
+        margin-top: 5px;
+      }
+      #searchBtn-area{
+        padding-right: 0;
+        padding-left: 0;
+        margin: 0;
+        text-align: center;          
+        display: grid;
+      }
+      #clearSearchResultsBtn, #serachBtn, #closeBtn {
+        font-size: 0.9vmax;
+      }
+      .fixed-bottom {
+        position: fixed;
+        bottom: 10px; 
+        right: 10px;
+        padding: 6px 40px;
+      }
+      .mainCategory {
+        text-align: left;
+        white-space: nowrap;
+      }
+      .subCategory {
+        text-align: center;
+        white-space: nowrap;
+      }
+      #homeIcon {
+        font-size: 24px;
+        vertical-align: middle;
+      }
+      #data-number {
+        padding-top: 15px;
+      }
+      .btn.btn-link {
+        padding-right: 0;
+      }
+      svg {
+        overflow: hidden;
+        color: white;
+        vertical-align: middle;
+        font-size: 32px;
+        padding-right: 2px;
+        border-radius: 0;
+      }
+    </style>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="http://spectrumcatcher.polarstarspace.com/veggie/report/?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&data_day=2021-01-09">
+              <i id="homeIcon" class="material-icons">home</i>
+              ホーム
+            </a>
+          </li>
+        </ul>
+        <button class="navbar-toggler order-md-1" type="button" data-toggle="collapse" data-target="#navbar"
+          aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse order-md-2" id="navbar">
+          <ul class="navbar-nav mr-auto">
+            <a class="nav-link" href="../help" target="_blank">ヘルプ</a> 
+              
+            <a id="logout" class="nav-link" href="#!">ログアウト</a>
+                       
+          </ul>
+        </div>
+        <div class="collapse navbar-collapse order-md-4" id="navbar" >
+          <ul class="navbar-nav ml-auto" >
+            <a class="nav-link ">mkuriki</a>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <label id="serverName" class="d-none">spectrumcatcher.polarstarspace.com</label>
+    <div id="isNewJson" hidden>false</div>
+    <div style="overflow:auto;">
+    
+    <!-- データ一覧表示箇所 -->
+    <div id="report-list" class="row clearfix">
+      <div id="data-list" class="d-md-block">
+        <div id="col-data-list" class="col-12 d-md-block">
+          <div class="list-title">2021-01-09の一覧            <!-- 件数表示 -->
+            <label style="padding-right:2px;  padding-left:10px">(</label><label id="data-number" style="padding-right:2px; padding-left:2px">/</label><label style="padding-right:2px; padding-left:2px">)</label>
+                      </div>
+
+          <!-- データ一覧 -->
+          <div class="table-responsive" id="tableArea">
+            <table class="table table-hover text-nowrap" id="analysisResultTbl">
+              <tr><th class='' style='vertical-align: middle; text-align: center;'>サムネイル</th><th class='' style='vertical-align: middle; text-align: center;'>撮影日時</th><th class='' style='vertical-align: middle; text-align: center;'>作物情報</th><th class='' style='vertical-align: middle; text-align: center;'>コメント</th></tr><tr name='dataRow'><td style='text-align: center; vertical-align: middle; width:15%;'><a href='./view_report.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&fname=VeggieCamera_crops_spectrum_20210109_230634_0.bmp&loginuserid=mkuriki' > <img src='./view_photo.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&pic_id=20210109_230634' style='width:60px;height:auto;'></td><td style='text-align: center; vertical-align: middle; width:20%;'><a href='./view_report.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&fname=VeggieCamera_crops_spectrum_20210109_230634_0.bmp&loginuserid=mkuriki' >2021-01-09 23:06:35</td><td style='text-align: center; vertical-align: middle;'>稲　</td><td style='text-align: center; vertical-align: middle;'></td></tr><tr name='dataRow'><td style='text-align: center; vertical-align: middle; width:15%;'><a href='./view_report.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&fname=VeggieCamera_crops_spectrum_20210109_230536_0.bmp&loginuserid=mkuriki' > <img src='./view_photo.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&pic_id=20210109_230536' style='width:60px;height:auto;'></td><td style='text-align: center; vertical-align: middle; width:20%;'><a href='./view_report.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&fname=VeggieCamera_crops_spectrum_20210109_230536_0.bmp&loginuserid=mkuriki' >2021-01-09 23:05:38</td><td style='text-align: center; vertical-align: middle;'>稲　</td><td style='text-align: center; vertical-align: middle;'></td></tr><tr name='dataRow'><td style='text-align: center; vertical-align: middle; width:15%;'><a href='./view_report.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&fname=VeggieCamera_crops_spectrum_20210109_230439_0.bmp&loginuserid=mkuriki' > <img src='./view_photo.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&pic_id=20210109_230439' style='width:60px;height:auto;'></td><td style='text-align: center; vertical-align: middle; width:20%;'><a href='./view_report.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&fname=VeggieCamera_crops_spectrum_20210109_230439_0.bmp&loginuserid=mkuriki' >2021-01-09 23:04:41</td><td style='text-align: center; vertical-align: middle;'>稲　</td><td style='text-align: center; vertical-align: middle;'></td></tr><tr name='dataRow'><td style='text-align: center; vertical-align: middle; width:15%;'><a href='./view_report.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&fname=VeggieCamera_crops_spectrum_20210109_230342_0.bmp&loginuserid=mkuriki' > <img src='./view_photo.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&pic_id=20210109_230342' style='width:60px;height:auto;'></td><td style='text-align: center; vertical-align: middle; width:20%;'><a href='./view_report.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&fname=VeggieCamera_crops_spectrum_20210109_230342_0.bmp&loginuserid=mkuriki' >2021-01-09 23:03:43</td><td style='text-align: center; vertical-align: middle;'>稲　</td><td style='text-align: center; vertical-align: middle;'></td></tr><tr name='dataRow'><td style='text-align: center; vertical-align: middle; width:15%;'><a href='./view_report.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&fname=VeggieCamera_crops_spectrum_20210109_230244_0.bmp&loginuserid=mkuriki' > <img src='./view_photo.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&pic_id=20210109_230244' style='width:60px;height:auto;'></td><td style='text-align: center; vertical-align: middle; width:20%;'><a href='./view_report.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&fname=VeggieCamera_crops_spectrum_20210109_230244_0.bmp&loginuserid=mkuriki' >2021-01-09 23:02:46</td><td style='text-align: center; vertical-align: middle;'>稲　</td><td style='text-align: center; vertical-align: middle;'></td></tr><tr name='dataRow'><td style='text-align: center; vertical-align: middle; width:15%;'><a href='./view_report.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&fname=VeggieCamera_crops_spectrum_20210109_230147_0.bmp&loginuserid=mkuriki' > <img src='./view_photo.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&pic_id=20210109_230147' style='width:60px;height:auto;'></td><td style='text-align: center; vertical-align: middle; width:20%;'><a href='./view_report.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&fname=VeggieCamera_crops_spectrum_20210109_230147_0.bmp&loginuserid=mkuriki' >2021-01-09 23:01:49</td><td style='text-align: center; vertical-align: middle;'>稲　</td><td style='text-align: center; vertical-align: middle;'></td></tr><tr name='dataRow'><td style='text-align: center; vertical-align: middle; width:15%;'><a href='./view_report.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&fname=VeggieCamera_crops_spectrum_20210109_230050_0.bmp&loginuserid=mkuriki' > <img src='./view_photo.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&pic_id=20210109_230050' style='width:60px;height:auto;'></td><td style='text-align: center; vertical-align: middle; width:20%;'><a href='./view_report.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&fname=VeggieCamera_crops_spectrum_20210109_230050_0.bmp&loginuserid=mkuriki' >2021-01-09 23:00:51</td><td style='text-align: center; vertical-align: middle;'>稲　</td><td style='text-align: center; vertical-align: middle;'></td></tr><tr name='dataRow'><td style='text-align: center; vertical-align: middle; width:15%;'><a href='./view_report.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&fname=VeggieCamera_crops_spectrum_20210109_225952_0.bmp&loginuserid=mkuriki' > <img src='./view_photo.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&pic_id=20210109_225952' style='width:60px;height:auto;'></td><td style='text-align: center; vertical-align: middle; width:20%;'><a href='./view_report.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&fname=VeggieCamera_crops_spectrum_20210109_225952_0.bmp&loginuserid=mkuriki' >2021-01-09 22:59:54</td><td style='text-align: center; vertical-align: middle;'>稲　</td><td style='text-align: center; vertical-align: middle;'></td></tr><tr name='dataRow'><td style='text-align: center; vertical-align: middle; width:15%;'><a href='./view_report.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&fname=VeggieCamera_crops_spectrum_20210109_225855_0.bmp&loginuserid=mkuriki' > <img src='./view_photo.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&pic_id=20210109_225855' style='width:60px;height:auto;'></td><td style='text-align: center; vertical-align: middle; width:20%;'><a href='./view_report.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&fname=VeggieCamera_crops_spectrum_20210109_225855_0.bmp&loginuserid=mkuriki' >2021-01-09 22:58:57</td><td style='text-align: center; vertical-align: middle;'>稲　</td><td style='text-align: center; vertical-align: middle;'></td></tr><tr name='dataRow'><td style='text-align: center; vertical-align: middle; width:15%;'><a href='./view_report.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&fname=VeggieCamera_crops_spectrum_20210109_225758_0.bmp&loginuserid=mkuriki' > <img src='./view_photo.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&pic_id=20210109_225758' style='width:60px;height:auto;'></td><td style='text-align: center; vertical-align: middle; width:20%;'><a href='./view_report.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&fname=VeggieCamera_crops_spectrum_20210109_225758_0.bmp&loginuserid=mkuriki' >2021-01-09 22:57:59</td><td style='text-align: center; vertical-align: middle;'>稲　</td><td style='text-align: center; vertical-align: middle;'></td></tr><tr name='dataRow'><td style='text-align: center; vertical-align: middle; width:15%;'><a href='./view_report.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&fname=VeggieCamera_crops_spectrum_20210109_225700_0.bmp&loginuserid=mkuriki' > <img src='./view_photo.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&pic_id=20210109_225700' style='width:60px;height:auto;'></td><td style='text-align: center; vertical-align: middle; width:20%;'><a href='./view_report.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&fname=VeggieCamera_crops_spectrum_20210109_225700_0.bmp&loginuserid=mkuriki' >2021-01-09 22:57:02</td><td style='text-align: center; vertical-align: middle;'>稲　</td><td style='text-align: center; vertical-align: middle;'></td></tr><tr name='dataRow'><td style='text-align: center; vertical-align: middle; width:15%;'><a href='./view_report.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&fname=VeggieCamera_crops_spectrum_20210109_225603_0.bmp&loginuserid=mkuriki' > <img src='./view_photo.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&pic_id=20210109_225603' style='width:60px;height:auto;'></td><td style='text-align: center; vertical-align: middle; width:20%;'><a href='./view_report.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&fname=VeggieCamera_crops_spectrum_20210109_225603_0.bmp&loginuserid=mkuriki' >2021-01-09 22:56:04</td><td style='text-align: center; vertical-align: middle;'>稲　</td><td style='text-align: center; vertical-align: middle;'></td></tr><tr name='dataRow'><td style='text-align: center; vertical-align: middle; width:15%;'><a href='./view_report.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&fname=VeggieCamera_crops_spectrum_20210109_225505_0.bmp&loginuserid=mkuriki' > <img src='./view_photo.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&pic_id=20210109_225505' style='width:60px;height:auto;'></td><td style='text-align: center; vertical-align: middle; width:20%;'><a href='./view_report.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&fname=VeggieCamera_crops_spectrum_20210109_225505_0.bmp&loginuserid=mkuriki' >2021-01-09 22:55:07</td><td style='text-align: center; vertical-align: middle;'>稲　</td><td style='text-align: center; vertical-align: middle;'></td></tr><tr name='dataRow'><td style='text-align: center; vertical-align: middle; width:15%;'><a href='./view_report.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&fname=VeggieCamera_crops_spectrum_20210109_225408_0.bmp&loginuserid=mkuriki' > <img src='./view_photo.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&pic_id=20210109_225408' style='width:60px;height:auto;'></td><td style='text-align: center; vertical-align: middle; width:20%;'><a href='./view_report.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&fname=VeggieCamera_crops_spectrum_20210109_225408_0.bmp&loginuserid=mkuriki' >2021-01-09 22:54:10</td><td style='text-align: center; vertical-align: middle;'>稲　</td><td style='text-align: center; vertical-align: middle;'></td></tr><tr name='dataRow'><td style='text-align: center; vertical-align: middle; width:15%;'><a href='./view_report.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&fname=VeggieCamera_crops_spectrum_20210109_225311_0.bmp&loginuserid=mkuriki' > <img src='./view_photo.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&pic_id=20210109_225311' style='width:60px;height:auto;'></td><td style='text-align: center; vertical-align: middle; width:20%;'><a href='./view_report.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&fname=VeggieCamera_crops_spectrum_20210109_225311_0.bmp&loginuserid=mkuriki' >2021-01-09 22:53:12</td><td style='text-align: center; vertical-align: middle;'>稲　</td><td style='text-align: center; vertical-align: middle;'></td></tr><tr name='dataRow'><td style='text-align: center; vertical-align: middle; width:15%;'><a href='./view_report.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&fname=VeggieCamera_crops_spectrum_20210109_225213_0.bmp&loginuserid=mkuriki' > <img src='./view_photo.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&pic_id=20210109_225213' style='width:60px;height:auto;'></td><td style='text-align: center; vertical-align: middle; width:20%;'><a href='./view_report.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&fname=VeggieCamera_crops_spectrum_20210109_225213_0.bmp&loginuserid=mkuriki' >2021-01-09 22:52:15</td><td style='text-align: center; vertical-align: middle;'>稲　</td><td style='text-align: center; vertical-align: middle;'></td></tr><tr name='dataRow'><td style='text-align: center; vertical-align: middle; width:15%;'><a href='./view_report.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&fname=VeggieCamera_crops_spectrum_20210109_225116_0.bmp&loginuserid=mkuriki' > <img src='./view_photo.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&pic_id=20210109_225116' style='width:60px;height:auto;'></td><td style='text-align: center; vertical-align: middle; width:20%;'><a href='./view_report.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&fname=VeggieCamera_crops_spectrum_20210109_225116_0.bmp&loginuserid=mkuriki' >2021-01-09 22:51:18</td><td style='text-align: center; vertical-align: middle;'>稲　</td><td style='text-align: center; vertical-align: middle;'></td></tr><tr name='dataRow'><td style='text-align: center; vertical-align: middle; width:15%;'><a href='./view_report.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&fname=VeggieCamera_crops_spectrum_20210109_225019_0.bmp&loginuserid=mkuriki' > <img src='./view_photo.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&pic_id=20210109_225019' style='width:60px;height:auto;'></td><td style='text-align: center; vertical-align: middle; width:20%;'><a href='./view_report.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&fname=VeggieCamera_crops_spectrum_20210109_225019_0.bmp&loginuserid=mkuriki' >2021-01-09 22:50:20</td><td style='text-align: center; vertical-align: middle;'>稲　</td><td style='text-align: center; vertical-align: middle;'></td></tr><tr name='dataRow'><td style='text-align: center; vertical-align: middle; width:15%;'><a href='./view_report.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&fname=VeggieCamera_crops_spectrum_20210109_224920_0.bmp&loginuserid=mkuriki' > <img src='./view_photo.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&pic_id=20210109_224920' style='width:60px;height:auto;'></td><td style='text-align: center; vertical-align: middle; width:20%;'><a href='./view_report.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&fname=VeggieCamera_crops_spectrum_20210109_224920_0.bmp&loginuserid=mkuriki' >2021-01-09 22:49:22</td><td style='text-align: center; vertical-align: middle;'>稲　</td><td style='text-align: center; vertical-align: middle;'></td></tr><tr name='dataRow'><td style='text-align: center; vertical-align: middle; width:15%;'><a href='./view_report.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&fname=VeggieCamera_crops_spectrum_20210109_224816_0.bmp&loginuserid=mkuriki' > <img src='./view_photo.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&pic_id=20210109_224816' style='width:60px;height:auto;'></td><td style='text-align: center; vertical-align: middle; width:20%;'><a href='./view_report.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&fname=VeggieCamera_crops_spectrum_20210109_224816_0.bmp&loginuserid=mkuriki' >2021-01-09 22:48:18</td><td style='text-align: center; vertical-align: middle;'>稲　</td><td style='text-align: center; vertical-align: middle;'></td></tr><tr name='dataRow'><td style='text-align: center; vertical-align: middle; width:15%;'><a href='./view_report.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&fname=VeggieCamera_crops_spectrum_20210109_224648_0.bmp&loginuserid=mkuriki' > <img src='./view_photo.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&pic_id=20210109_224648' style='width:60px;height:auto;'></td><td style='text-align: center; vertical-align: middle; width:20%;'><a href='./view_report.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&fname=VeggieCamera_crops_spectrum_20210109_224648_0.bmp&loginuserid=mkuriki' >2021-01-09 22:46:49</td><td style='text-align: center; vertical-align: middle;'>稲　</td><td style='text-align: center; vertical-align: middle;'></td></tr><tr name='dataRow'><td style='text-align: center; vertical-align: middle; width:15%;'><a href='./view_report.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&fname=VeggieCamera_crops_spectrum_20210109_220009_0.bmp&loginuserid=mkuriki' > <img src='./view_photo.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&pic_id=20210109_220009' style='width:60px;height:auto;'></td><td style='text-align: center; vertical-align: middle; width:20%;'><a href='./view_report.php?id=mkuriki&v=103&c=02302092ef7b9187a41ff7947ebe50f6&fname=VeggieCamera_crops_spectrum_20210109_220009_0.bmp&loginuserid=mkuriki' >2021-01-09 22:00:10</td><td style='text-align: center; vertical-align: middle;'>稲　</td><td style='text-align: center; vertical-align: middle;'></td></tr>            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- 検索機能PC -->
+             
+    </div> 
+  </main>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+  <script src="node_modules/bootstrap-honoka/dist/js/bootstrap.min.js"></script>
+  <script  id="script" type="text/javascript" src="report.js"></script>
+  <script type="text/javascript">
+      let servername ='spectrumcatcher.polarstarspace.com';
+  </script>
+  <script type="text/javascript" src="logout.js"></script>
+</body>
+
 </html>
